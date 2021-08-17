@@ -24,7 +24,7 @@ GO_OPTS := -mod=vendor
 
 OS_LIST := linux darwin windows
 
-OUT_RELEASE_ZIP := $(addsuffix _amd64.zip, $(addprefix bin/remco_$(VERSION)_, $(OS_LIST)))
+OUT_RELEASE_ZIP := $(addsuffix _arm64.zip, $(addprefix bin/remco_$(VERSION)_, $(OS_LIST)))
 
 default: build
 
@@ -94,7 +94,7 @@ tag:
 release: $(OUT_RELEASE_ZIP)
 
 $(OUT_RELEASE_ZIP): $(GO_SRC)
-	CGO_ENABLED=0 GOOS=$(subst bin/remco_${VERSION}_,,$(subst _amd64.zip,,$@)) \
+	CGO_ENABLED=0 GOARCH=arm64 GOOS=$(subst bin/remco_${VERSION}_,,$(subst _arm64.zip,,$@)) \
 	     $(MAKE) build \
-	     BIN_NAME=$(subst ${VERSION}_,,$(subst _amd64.zip,,$@))
-	cd bin && zip -r $(shell basename $@) $(shell basename $(subst ${VERSION}_,,$(subst _amd64.zip,,$@)))
+	     BIN_NAME=$(subst ${VERSION}_,,$(subst _arm64.zip,,$@))
+	cd bin && zip -r $(shell basename $@) $(shell basename $(subst ${VERSION}_,,$(subst _arm64.zip,,$@)))
