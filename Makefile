@@ -2,7 +2,9 @@
 
 BIN_NAME := bin/remco
 
-VERSION := 0.12.1-arm.1
+GOARCH ?= amd64
+
+VERSION := 0.12.2-rc0
 GIT_COMMIT := $(shell git rev-parse HEAD)
 GIT_DIRTY := $(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)
 BUILD_DATE := $(shell date '+%Y-%m-%d-%H:%M:%S')
@@ -22,9 +24,9 @@ GO := go
 
 GO_OPTS := -mod=mod
 
-OS_LIST := linux darwin windows
+OS_LIST := linux
 
-OUT_RELEASE_ZIP := $(addsuffix _arm64.zip, $(addprefix bin/remco_$(VERSION)_, $(OS_LIST)))
+OUT_RELEASE_ZIP := $(addsuffix _$(GOARCH).zip, $(addprefix bin/remco_$(VERSION)_, $(OS_LIST)))
 
 default: build
 
@@ -94,7 +96,7 @@ tag:
 release: $(OUT_RELEASE_ZIP)
 
 $(OUT_RELEASE_ZIP): $(GO_SRC)
-	GOARCH=arm64 CGO_ENABLED=0 GOOS=$(subst bin/remco_${VERSION}_,,$(subst _arm64.zip,,$@)) \
+	GOARCH=$(GOARCH) CGO_ENABLED=0 GOOS=$(subst bin/remco_${VERSION}_,,$(subst _$(GOARCH).zip,,$@)) \
 	     $(MAKE) build \
-	     BIN_NAME=$(subst ${VERSION}_,,$(subst _arm64.zip,,$@))
-	cd bin && zip -r $(shell basename $@) $(shell basename $(subst ${VERSION}_,,$(subst _arm64.zip,,$@)))
+	     BIN_NAME=$(subst ${VERSION}_,,$(subst _$(GOARCH).zip,,$@))
+	cd bin && zip -r $(shell basename $@) $(shell basename $(subst ${VERSION}_,,$(subst _$(GOARCH).zip,,$@)))
