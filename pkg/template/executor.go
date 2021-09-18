@@ -15,7 +15,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/HeavyHorst/consul-template/child"
+	"github.com/hashicorp/consul-template/child"
 	"github.com/hashicorp/consul-template/signals"
 	"github.com/mattn/go-shellwords"
 	"github.com/pkg/errors"
