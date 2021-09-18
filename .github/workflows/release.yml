@@ -31,6 +31,7 @@ jobs:
         run: |
           export VERSION=$(git describe --tags --always --dirty --first-parent)
           GOARCH=arm64 make release
+          mkdir dist
           mv bin/*zip dist/
           make clean
           GOARCH=amd64 make release
