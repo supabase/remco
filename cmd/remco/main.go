@@ -19,7 +19,6 @@ import (
 	"github.com/HeavyHorst/remco/pkg/log"
 	"github.com/hashicorp/consul-template/signals"
 	"github.com/hashicorp/go-reap"
-	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -43,7 +42,7 @@ func run() {
 
 	cfg, err := NewConfiguration(configPath)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("failed to read config", err)
 	}
 
 	run := NewSupervisor(cfg, reapLock, done)
@@ -65,12 +64,12 @@ func run() {
 		case s := <-signalChan:
 			switch s {
 			case syscall.SIGHUP:
-				log.WithFields(logrus.Fields{
-					"file": configPath,
-				}).Info("loading new config")
+				log.WithFields(
+					"file", configPath,
+				).Info("loading new config")
 				newConf, err := NewConfiguration(configPath)
 				if err != nil {
-					log.Error(err)
+					log.Error("failed to read config", err)
 					continue
 				}
 				run.Reload(newConf)
