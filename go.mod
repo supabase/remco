@@ -24,9 +24,9 @@ require (
 	github.com/onsi/ginkgo v1.10.3 // indirect
 	github.com/onsi/gomega v1.7.1 // indirect
 	github.com/pborman/uuid v1.2.0
-	github.com/pkg/errors v0.8.1
-	github.com/prometheus/client_golang v1.4.0
-	github.com/sirupsen/logrus v1.4.2
+	github.com/pkg/errors v0.9.1
+	github.com/prometheus/client_golang v1.11.1
+	github.com/sirupsen/logrus v1.6.0
 	github.com/x-cray/logrus-prefixed-formatter v0.5.2
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22 // indirect
