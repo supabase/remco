@@ -13,7 +13,7 @@ require (
 	github.com/dop251/goja v0.0.0-20190912223329-aa89e6a4c733
 	github.com/ghodss/yaml v1.0.0
 	github.com/go-sourcemap/sourcemap v2.1.2+incompatible // indirect
-	github.com/hashicorp/consul-template v0.22.0
+	github.com/hashicorp/consul-template v0.27.3
 	github.com/hashicorp/go-reap v0.0.0-20170704170343-bf58d8a43e7b
 	github.com/juju/errors v0.0.0-20190930114154-d42613fe1ab9 // indirect
 	github.com/juju/loggo v0.0.0-20190526231331-6e530bcce5d8 // indirect
@@ -24,7 +24,7 @@ require (
 	github.com/onsi/ginkgo v1.10.3 // indirect
 	github.com/onsi/gomega v1.7.1 // indirect
 	github.com/pborman/uuid v1.2.0
-	github.com/pkg/errors v0.8.1
+	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.4.0
 	github.com/sirupsen/logrus v1.4.2
 	github.com/x-cray/logrus-prefixed-formatter v0.5.2
